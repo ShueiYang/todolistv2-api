@@ -44,14 +44,14 @@ async function main() {
         app.route("/")
         
             .get((req, res) => {
-                getToDoList(res, Item, defaultItems, List)
+                getToDoList(req, res, Item, defaultItems, List)
             })
 
-            .post( (req, res) => {
+            .post((req, res) => {
                 addItem(req, res, Item, List)
             })
 
-            .delete( (req, res) => {
+            .delete((req, res) => {
                 deleteItem(req, res, Item, List)
             })
 

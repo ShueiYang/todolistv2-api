@@ -1,6 +1,6 @@
 
 
-const getToDoList = async (res, Item, defaultItems, List) => {
+const getToDoList = async (req, res, Item, defaultItems, List) => {
     
     try {
         const itemsListResult = await Item.find({})
