@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require("express");
 const cors = require('cors');
 const mongoose = require('mongoose');
-const { getToDoList } = require('./controllers/getTodoList');
+const { getTodoList } = require('./controllers/getTodoList');
 const { addItem } = require('./controllers/addItem');
 const { deleteItem } = require('./controllers/deleteItem');
 const { getCustomList } = require('./controllers/getCustomList');
@@ -44,7 +44,7 @@ async function main() {
         app.route("/")
         
             .get((req, res) => {
-                getToDoList(req, res, Item, defaultItems, List)
+                getTodoList(res, Item, defaultItems, List)
             })
 
             .post((req, res) => {

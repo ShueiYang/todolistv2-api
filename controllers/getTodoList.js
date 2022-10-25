@@ -1,6 +1,6 @@
 
 
-const getToDoList = async (req, res, Item, defaultItems, List) => {
+const getTodoList = async (res, Item, defaultItems, List) => {
     
     try {
         const itemsListResult = await Item.find({})
@@ -22,5 +22,5 @@ const getToDoList = async (req, res, Item, defaultItems, List) => {
 };
 
 module.exports = {
-    getToDoList
+    getTodoList
 }
