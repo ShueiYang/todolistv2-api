@@ -2,12 +2,12 @@ require('dotenv').config();
 const express = require("express");
 const cors = require('cors');
 const mongoose = require('mongoose');
-const { getToDoList } = require("./controllers/getToDoList");
-const { addItem } = require("./controllers/addItem");
-const { deleteItem } = require("./controllers/deleteItem");
-const { getCustomList } = require("./controllers/getCustomList");
-const { addCustomList } = require("./controllers/addCustomList");
-const { deleteCustomList } = require("./controllers/deleteCustomList");
+const { getToDoList } = require('./controllers/getTodoList');
+const { addItem } = require('./controllers/addItem');
+const { deleteItem } = require('./controllers/deleteItem');
+const { getCustomList } = require('./controllers/getCustomList');
+const { addCustomList } = require('./controllers/addCustomList');
+const { deleteCustomList } = require('./controllers/deleteCustomList');
 
 const app = express();
 
