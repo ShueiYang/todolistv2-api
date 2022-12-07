@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require("express");
 const cors = require('cors');
 const mongoose = require('mongoose');
+
 const { getTodoList } = require('./controllers/getTodoList');
 const { addItem } = require('./controllers/addItem');
 const { deleteItem } = require('./controllers/deleteItem');
@@ -76,11 +77,8 @@ async function main() {
 }
 
 
-let port = process.env.PORT;
-if (port == null || port == "") {
-    port = 8080
-}
+const PORT = process.env.PORT || 8080;
 
-app.listen(port, () => {
-    console.log(`app is running on port ${port}`)
-})
+app.listen(PORT, () => {
+    console.log(`app is running on port ${PORT}...`)
+});
