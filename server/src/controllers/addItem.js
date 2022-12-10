@@ -9,10 +9,10 @@ const addItem =  (req, res, Item, List) => {
     if (customListName === "Date") {
         item.save(function (err) {
             if (err) {
-                console.log(`ERROR NO NAME: ${err}`)
+                console.log(`ERROR Name Missing: ${err}`)
                 res.status(400).json("Please provide a name to add on the list");
             } else {
-                res.redirect("/");
+                res.redirect("/api");
             }
         });
     } else {
@@ -24,7 +24,7 @@ const addItem =  (req, res, Item, List) => {
                         console.log(`ERROR NO NAME: ${err}`)
                         res.status(400).json("Please provide a name to add on the list");
                     } else {
-                        res.redirect(`/lists/${customListName}`);
+                        res.redirect(`/api/${customListName}`);
                     } 
                 });
             }

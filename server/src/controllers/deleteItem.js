@@ -8,7 +8,7 @@ const deleteItem = (req, res, Item, List) => {
     if (customListName === "Date") {
         Item.findByIdAndDelete(itemId, function (err) {
             if (!err) {
-                res.redirect(303, "/");
+                res.redirect(303, "/api");
             }
         });
     } else {
@@ -17,7 +17,7 @@ const deleteItem = (req, res, Item, List) => {
             { $pull: { items: { _id: itemId } } },
             function (err) {
                 if (!err) {
-                    res.redirect(303, `/lists/${customListName}`);
+                    res.redirect(303, `/api/${customListName}`);
                 }
             }
         )
