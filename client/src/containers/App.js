@@ -9,6 +9,8 @@ import {ErrorBoundary} from 'react-error-boundary';
 import ErrorFallback from "../errorboundary/ErrorFallback";
 import './App.css';
 
+import { httpAddItem, httpCreateList, httpDeleteItem, httpDeleteList } from "../hooks/request";
+
 
 function App() {
   
@@ -102,24 +104,16 @@ function App() {
     event.preventDefault();
     const buttonClick = event.target.value;
     try {
-      const response = await fetch('/api', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({
-          input: inputText,
-          value: buttonClick
-        })
-      })
+      const response = await httpAddItem(inputText, buttonClick);
+      const data = await response.json();
       if(response.ok) {
-        const data = await response.json();
         if(buttonClick==="Date") {
           setTodoList(data.mainData);
         } else {
           setCustomList(data.customList.items)
         }
       } else if (response.status === 400) {
-        const errorMessage = await response.json();
-        setError(errorMessage);
+        setError(data);
       }
     } catch (err) {
       console.log(err)
@@ -131,15 +125,7 @@ function App() {
   const deleteItem = async (event, itemId) => {
     const checkBoxClick = event.target.value;
     try {
-        const response = await fetch('/api', {
-          method: 'DELETE',
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({
-            itemID: itemId,
-            value: checkBoxClick
-          })
-        })
-        const data = await response.json();
+      const data = await httpDeleteItem(checkBoxClick, itemId)  
         if(checkBoxClick==="Date") {
           setTodoList(data.mainData)
         } else {
@@ -152,14 +138,7 @@ function App() {
 
   const createCustomList = async (newListTitle) => {
     try {
-      const response = await fetch('/api/createlist', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({
-          title: newListTitle
-        })
-      })
-      const message = await response.json();
+      const message = await httpCreateList(newListTitle)
       setNotification(message)
       getCustomList(newListTitle);
     } catch (err) {
@@ -169,14 +148,7 @@ function App() {
   
   const deleteCustomList = async (selectList) => {
     try{
-      const response = await fetch('/api/deletelist',{
-        method: 'DELETE',
-        headers: {'Content-Type': 'application/json'}, 
-        body: JSON.stringify({
-          title: selectList
-        })
-      })
-      const data = await response.json();
+      const data = await httpDeleteList(selectList)
       setNotification(data.notification)
       if (serverUrl !== "/api") {
         gotoHomePage(); 
