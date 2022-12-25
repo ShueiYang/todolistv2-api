@@ -1,17 +1,17 @@
-require('dotenv').config();
-const path = require('path');
+require("dotenv").config();
+const path = require("path");
 const express = require("express");
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-mongoose.set('strictQuery', false);
+mongoose.set("strictQuery", false);
 
-const apiRouter = require('./routes/api-router');
+const apiRouter = require("./routes/api-router");
 
 const app = express();
 
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '..', 'public',)));
-app.use('/api', apiRouter);
+app.use(express.static(path.join(__dirname, "..", "public")));
+app.use("/api", apiRouter);
 
 
 async function startServer() {
@@ -24,10 +24,10 @@ async function startServer() {
     }
 }
 
-mongoose.connection.once('open', () => {
+mongoose.connection.once("open", () => {
     console.log("MongoDB connection ready!");
 })
-mongoose.connection.on('error', (err) => {
+mongoose.connection.on("error", (err) => {
     console.error(err);
 })    
      
