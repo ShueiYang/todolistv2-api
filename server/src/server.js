@@ -2,7 +2,6 @@ require("dotenv").config();
 const path = require("path");
 const express = require("express");
 const mongoose = require("mongoose");
-
 mongoose.set("strictQuery", false);
 
 const apiRouter = require("./routes/api-router");
@@ -11,6 +10,7 @@ const app = express();
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "..", "public")));
+
 app.use("/api", apiRouter);
 
 

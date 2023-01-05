@@ -183,43 +183,33 @@ function App() {
         deleteList={deleteCustomList}
       />
       <div id="successAlert">
-        <AlertMessage notification={notification} 
-                      errorSearch={errorSearch}
-                      close={closeAlert}
-        />
+        <AlertMessage notification={notification} errorSearch={errorSearch} close={closeAlert}/>
       </div>  
       
-      <ListTitle homepage={home}
-                customListTitle={listTitle}
-      />
+      <ListTitle homepage={home} customListTitle={listTitle}/>
 
       <div className="box">
-        <ToDoList listItems={home ? todoList : customList}
-                  listTitle={listTitle}
-                  homepage={home}
-                  deleteItem={deleteItem}
+        <ToDoList 
+          listItems={home ? todoList : customList}
+          listTitle={listTitle}
+          homepage={home}
+          deleteItem={deleteItem}
         />
-        
         <form className="item">
           <input type="text" 
-                placeholder="Add new item here"
-                autoComplete="off"
-                onChange={handleChange}
-                value={inputText}
+            placeholder="Add new item here"
+            autoComplete="off"
+            onChange={handleChange}
+            value={inputText}
           />
-          <button 
-                value= {home ? "Date" : listTitle}
-                onClick={addItem}>
-             +
-          </button>
+          <button value={home ? "Date": listTitle} onClick={addItem}> + </button>
         </form>
         <AlertMessage error={error} close={closeAlert}/>
       </div>
-      
       <Footer />
       </ErrorBoundary>  
     </>
   );
 }
 
-export default App;        
+export default App;

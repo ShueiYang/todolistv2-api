@@ -48,7 +48,7 @@ const ModalNotification = ({newTitle, deleteModal, listName, handleClose, delete
         } else if (deleteModal) {
             setShowModal(true)
             setModalContent({
-                title: deleteModal
+                title: deleteModal  
             })
         } else if (validation) {
             setTimeout(()=> {
@@ -58,7 +58,8 @@ const ModalNotification = ({newTitle, deleteModal, listName, handleClose, delete
     },[newTitle, deleteModal, validation])
     
     return (
-        <>
+        // First Modal component 
+        <>     
         <Modal
             show={showModal}
             onHide={closeModal}
@@ -97,6 +98,7 @@ const ModalNotification = ({newTitle, deleteModal, listName, handleClose, delete
             </Modal.Footer>
         </Modal>
         
+    {/* // Second Modal component */}
         <Modal
             show={showModal2}
             onHide={closeModal2}
@@ -124,10 +126,4 @@ const ModalNotification = ({newTitle, deleteModal, listName, handleClose, delete
         </>
     )
 }
-
 export default ModalNotification; 
-        
-              
-                         
-               
-            
