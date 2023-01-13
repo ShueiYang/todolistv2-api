@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Header from '../components/Header';
 import ListTitle from '../components/ListTitle';
-import ToDoList from '../components/ToDoList';
+import ToDoList from '../components/ToDoList/ToDoList';
 import Footer from '../components/Footer';
 import AlertMessage from "../components/Alert";
 import ModalNotification from "../components/Modal/Modal";
@@ -67,40 +67,7 @@ function App() {
   }, [serverUrl])
    
   
-  const handleChange = (event) => {
-    setInputText(event.target.value)
-  }
-  const handleSearch = (event) => {
-    setSearch(event.target.value)
-  }
-  const handleModal = () => {
-    setDeleteModal("Delete custom list")
-  }
-  const closeAlert = () => {
-    setError(null);
-    setNotification(null)
-    setErrorSearch(null);
-  }
-  const closeModal = () => {
-    setNewTitle(null)
-    setDeleteModal(null);
-  }
-  
-  const gotoHomePage = () => {
-      setHome(true);
-      setServerUrl('/api');
-  }
-
-  const getCustomList = (listName) => {
-    if (listName === "") {
-      setErrorSearch("Please provide a name to access")
-    } else {
-      setHome(false)
-      setServerUrl(`/api/${listName}`) 
-    }
-  }
-      
-  const addItem = async (event) => {
+  async function addItem (event) {
     event.preventDefault();
     const buttonClick = event.target.value;
     try {
@@ -120,9 +87,9 @@ function App() {
     } finally {
       setInputText("");
     }
-  }
-
-  const deleteItem = async (event, itemId) => {
+  };  
+  
+  async function deleteItem (event, itemId) {
     const checkBoxClick = event.target.value;
     try {
       const data = await httpDeleteItem(checkBoxClick, itemId)  
@@ -134,9 +101,18 @@ function App() {
       } catch (err) {
         console.log(err)
       } 
-  }
+  };
 
-  const createCustomList = async (newListTitle) => {
+  function getCustomList(listName) {
+    if (listName === "") {
+      setErrorSearch("Please provide a name to access")
+    } else {
+      setHome(false)
+      setServerUrl(`/api/${listName}`) 
+    }
+  };
+  
+  async function createCustomList(newListTitle) {
     try {
       const message = await httpCreateList(newListTitle)
       setNotification(message)
@@ -144,9 +120,9 @@ function App() {
     } catch (err) {
       console.log(err)
     }
-  }
-  
-  const deleteCustomList = async (selectList) => {
+  };
+
+  async function deleteCustomList(selectList) {
     try{
       const data = await httpDeleteList(selectList)
       setNotification(data.notification)
@@ -158,7 +134,25 @@ function App() {
     } catch (err) {
       console.log(err)
     }
-  }
+  };
+  
+
+  function handleModal() {
+    setDeleteModal("Delete custom list")
+  };
+  function closeAlert() {
+    setError(null);
+    setNotification(null)
+    setErrorSearch(null);
+  };
+  function closeModal() {
+    setNewTitle(null)
+    setDeleteModal(null);
+  };
+  function gotoHomePage() {
+      setHome(true);
+      setServerUrl('/api');
+  };
   
   return (
     <>
@@ -169,7 +163,7 @@ function App() {
         gotoHomePage={gotoHomePage}
         customListName={listName}
         getCustomList={getCustomList}
-        handleChange={handleSearch}
+        handleChange={(e)=> setSearch(e.target.value)}
         searchInput={search} 
         deleteMenu={handleModal}     
       />
@@ -199,7 +193,7 @@ function App() {
           <input type="text" 
             placeholder="Add new item here"
             autoComplete="off"
-            onChange={handleChange}
+            onChange={(e)=> setInputText(e.target.value)}
             value={inputText}
           />
           <button value={home ? "Date": listTitle} onClick={addItem}> + </button>

@@ -12,6 +12,26 @@ const ModalNotification = ({newTitle, deleteModal, listName, handleClose, delete
     const [selectOption, setSelectOption ] = useState("");
     const [validation, setValidation] = useState(null);
     
+    useEffect(()=> {
+        if (newTitle) {
+            setShowModal(true)
+            setModalContent({
+                title: 'List not found',
+                text: `${newTitle} does not exist, do you want to create a new one ?`,
+            })
+        } else if (deleteModal) {
+            setShowModal(true)
+            setModalContent({
+                title: deleteModal  
+            })
+        } else if (validation) {
+            setTimeout(()=> {
+                setShowModal2(true)
+            }, 400)
+        }
+    },[newTitle, deleteModal, validation]);    
+    
+    
     function closeModal () {
         setShowModal(false)
         setSelectOption("")
@@ -38,25 +58,6 @@ const ModalNotification = ({newTitle, deleteModal, listName, handleClose, delete
         closeModal2();
     }
 
-    useEffect(()=> {
-        if (newTitle) {
-            setShowModal(true)
-            setModalContent({
-                title: 'List not found',
-                text: `${newTitle} does not exist, do you want to create a new one ?`,
-            })
-        } else if (deleteModal) {
-            setShowModal(true)
-            setModalContent({
-                title: deleteModal  
-            })
-        } else if (validation) {
-            setTimeout(()=> {
-                setShowModal2(true)
-            }, 400)
-        }
-    },[newTitle, deleteModal, validation])
-    
     return (
         // First Modal component 
         <>     

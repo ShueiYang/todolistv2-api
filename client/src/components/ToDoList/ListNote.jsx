@@ -2,8 +2,6 @@ import React from "react";
 
 
 const ListNote = ({list, homepage, deleteItem, listTitle}) => {
-
-
     
     return (
         <form>
@@ -18,6 +16,4 @@ const ListNote = ({list, homepage, deleteItem, listTitle}) => {
     )
 }
 
-export default ListNote;     
-        
-    
+export default ListNote;
