@@ -7,7 +7,7 @@ const getTodoList = async (res, Item, defaultItems, List) => {
         
         if (itemsListResult.length === 0) {
             await Item.insertMany(defaultItems)
-            res.redirect("/")
+            res.redirect("/api")
         } else {
             const listResult = await List.find({},'name').exec();
             
