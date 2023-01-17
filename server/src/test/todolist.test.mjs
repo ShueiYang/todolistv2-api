@@ -14,11 +14,21 @@ describe('Run TODOLIST', ()=> {
 
     describe('TEST getTodoList with GET/POST/DELETE', () => {
         test('should respond with 200 success', async () => {
-            await request(app)
+            const mainList = await Item.find({});
+            if(mainList.length === 0) {
+                await request(app)
+                    .get('/api')
+                    .set('Accept', 'application/json')
+                    .expect(302)
+                    .expect('Location', '/api');
+            };
+            const resp = await request(app)
                 .get('/api')
                 .set('Accept', 'application/json')
                 .expect('Content-Type', /json/)
-                .expect(200);
+                .expect(200)
+            expect(resp.body).toHaveProperty('mainData');
+            expect(resp.body).toHaveProperty('customListNames');
         });        
         
         test('should redirect to /api', async () => {
@@ -68,19 +78,21 @@ describe('Run TODOLIST', ()=> {
         
         test('get ListName', async () => {
             const listName = 'Custom-title-testing';
-            await request(app)
+            const resp1 = await request(app)
                 .get(`/api/${listName}?`)
                 .set('Accept', 'application/json')
                 .expect('Content-Type', /json/)
                 .expect(200);
-                                 
+            expect(resp1.body).toHaveProperty('customList');
+            expect(resp1.body).toHaveProperty('customListNames');
+
             const wronglistName = "zzzzzz";
-            const resp = await request(app)
+            const resp2 = await request(app)
                 .get(`/api/${wronglistName}?`)
                 .set('Accept', 'application/json')
                 .expect('Content-Type', /json/)
                 .expect(404);
-            expect(resp.body).toStrictEqual('Zzzzzz');
+            expect(resp2.body).toStrictEqual('Zzzzzz');
         });
         
         test('should redirect /api/Custom-title-testing', async () => {   
