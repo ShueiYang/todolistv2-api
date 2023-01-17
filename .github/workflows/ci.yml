@@ -1,0 +1,29 @@
+name: TODOLISTv2 Project CI
+on: 
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+jobs:
+  build:
+    env:
+      CI: true
+      DATABASE_AUTHENTIFICATION: ://localhost/todolist
+    strategy:
+      matrix:
+        node-version: [16.x, 18.x]
+        mongodb-version: ['5.0']
+    runs-on: unbuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js version ${{matrix.node-version}}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{matrix.node-version}}
+      - name: Use MongoDB from Githun actions
+        uses: timgchile/mongodb-github-action@1.7.4
+        with:
+          mongodb-version: ${{matrix.mongodb-version}}
+      - run: npm run install-all
+      - run: npm run build
+      - run: npm test

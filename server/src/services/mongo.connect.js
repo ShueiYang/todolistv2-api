@@ -12,7 +12,7 @@ mongoose.connection.on("error", (err) => {
 
 async function startServer() {
     try {
-        await mongoose.connect(`mongodb+srv://${process.env.DATABASE_AUTHENTIFICATION}`);
+        await mongoose.connect(`mongodb${process.env.DATABASE_AUTHENTIFICATION}`);
         
     } catch (err) {
         console.log(`Process failed... ${err}`);
