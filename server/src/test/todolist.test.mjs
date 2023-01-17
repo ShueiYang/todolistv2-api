@@ -1,5 +1,6 @@
+import "dotenv/config";
 import request from 'supertest';
-import app from '../server.mjs';
+import app from '../app.mjs';
 
 import { Item, List } from '../models/api-model.js';
 import { startServer, endServer } from '../services/mongo.connect.js';
