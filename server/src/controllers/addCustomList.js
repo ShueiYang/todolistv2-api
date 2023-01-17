@@ -12,7 +12,7 @@ const addCustomList = (req, res, List, defaultItems) => {
     })
     list.save(function (err) {
         if(!err) {
-           res.json(`${requestListName} successfully created in the custom list`)
+           res.status(201).json(`${requestListName} successfully created in the custom list`)
         }
     });
 };
