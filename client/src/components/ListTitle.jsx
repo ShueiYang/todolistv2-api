@@ -18,7 +18,11 @@ const ListTitle = ({homepage, customListTitle}) => {
 
     return (
         <div className="head">
-            <div id="icon"></div>
+            <div id="icon">
+                <div className="todoListIcon">
+                    <img src="icon.png" alt="icon"/>
+                </div>
+            </div>
             <div id="heading">
                 {homepage ? 
                     <h1> {getDate()} </h1> 
