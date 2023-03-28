@@ -1,6 +1,6 @@
 {
   "name": "todolistv2-api",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "Backend API for todolist-v2",
   "main": "src/server.mjs",
   "scripts": {
@@ -14,7 +14,7 @@
   "dependencies": {
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "mongoose": "^6.6.7"
+    "mongoose": "^7.0.0"
   },
   "devDependencies": {
     "jest": "^29.3.1",

@@ -1,5 +1,6 @@
 // Using ES Module to use top level await (ES2022)
 import "dotenv/config";
+
 import { createServer } from "http";
 
 import app from "./app.mjs";

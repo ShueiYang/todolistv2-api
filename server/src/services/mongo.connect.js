@@ -1,7 +1,5 @@
 const mongoose = require("mongoose");
 
-mongoose.set("strictQuery", false);
-
 mongoose.connection.once("open", () => {
     console.log("MongoDB connection ready!");
 });
