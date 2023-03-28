@@ -1,6 +1,6 @@
 
 
-const addCustomList = (req, res, List, defaultItems) => {
+const addCustomList = async (req, res, List, defaultItems) => {
     
     const customListName = req.body.title
     const requestListName = customListName.charAt(0).toUpperCase() +
@@ -10,11 +10,15 @@ const addCustomList = (req, res, List, defaultItems) => {
         name: requestListName,
         items: defaultItems
     })
-    list.save(function (err) {
-        if(!err) {
-           res.status(201).json(`${requestListName} successfully created in the custom list`)
-        }
-    });
+
+    try {
+        const saveList = await list.save(); 
+        if(saveList === list) {
+            res.status(201).json(`${requestListName} successfully created in the custom list`)
+        } 
+    } catch (err) {
+      console.error(err)  
+    }
 };
 
 module.exports = {

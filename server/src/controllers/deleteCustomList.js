@@ -1,22 +1,24 @@
 
 
-const deleteCustomList = (req, res, List) => {
+const deleteCustomList = async (req, res, List) => {
     
     const requestListName = req.body.title
 
-    List.findOneAndDelete( {name: requestListName}, function(err) {
-        if (!err) {
-            List.find({},'name', function (err, listResult) {
-                if(!err) {
-                    res.json({
-                        notification: `${requestListName} successfully deleted from the custom list`,
-                        customListNames: listResult
-                    })
-                }
+    try {
+        const result = await List.findOneAndDelete( {name: requestListName});
+        
+        if(result) {
+            const listResult = await List.find({}, 'name')
+            res.json({
+                notification: `${requestListName} successfully deleted from the custom list`,
+                customListNames: listResult
             })
         }
-    })
-};
+    } catch (err) {
+        console.error(err)
+    }
+}
+
 
 module.exports = {
     deleteCustomList
