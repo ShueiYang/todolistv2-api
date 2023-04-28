@@ -2,7 +2,7 @@ import React from "react";
 
 
 const ListNote = ({list, homepage, deleteItem, listTitle}) => {
-    
+
     return (
         <form>
             <div className="item">

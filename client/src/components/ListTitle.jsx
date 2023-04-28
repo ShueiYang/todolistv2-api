@@ -2,7 +2,6 @@ import React from "react";
 
 
 const ListTitle = ({homepage, customListTitle}) => {
-
    
     const getDate = () => {
         
@@ -20,7 +19,7 @@ const ListTitle = ({homepage, customListTitle}) => {
         <div className="head">
             <div id="icon">
                 <div className="todoListIcon">
-                    <img src="icon.png" alt="icon"/>
+                    <img src="/icon.png" alt="icon"/>
                 </div>
             </div>
             <div id="heading">
