@@ -15,11 +15,11 @@ const Header = ({handleChange, searchInput, gotoHomePage, customListName, getCus
         <Container>
         <Navbar.Brand 
           className="navbar-brand" 
-          href="https://shueiyang.github.io/keeper-app"
+          href="https://shueiyang-todolist.netlify.app"
           rel="noopener noreferrer"
           target="_blank"
         >
-          Keeper Project
+          TodoListV3 Project
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
