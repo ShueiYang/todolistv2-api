@@ -8,3 +8,8 @@ However the client side and server side is still developpe in the same project a
 * Express js : back-end Node js web framework.
 * React js : front-end Javascript library
 * Node js : cross-platform runtime environment to run Javascript code.
+
+Also adding a small end to end test on the server, and a preview date display test on the client: 
+
+* Jest and superTest on server side.
+* Vitest on client side with vite. 
