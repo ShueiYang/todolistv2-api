@@ -6,6 +6,7 @@ COPY package*.json ./
 
 COPY client/package*.json client/
 RUN npm run install-client --omit=dev
+RUN cd client && npm install vite --save-dev && cd ..
 
 COPY server/package*.json server/
 RUN npm run install-server --omit=dev
