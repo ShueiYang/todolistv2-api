@@ -16,6 +16,7 @@ const deleteCustomList = async (req, res, List) => {
         }
     } catch (err) {
         console.error(err)
+        res.status(500).json("Internal Server Error");
     }
 }
 

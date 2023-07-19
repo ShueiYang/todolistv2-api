@@ -19,6 +19,7 @@ const getCustomList = async (req, res, List) => {
         } 
     } catch (err) {
         console.log(`Error: ${err}`)
+        res.status(500).json("Internal Server Error");
     }
 };
 

@@ -17,7 +17,8 @@ const addCustomList = async (req, res, List, defaultItems) => {
             res.status(201).json(`${requestListName} successfully created in the custom list`)
         } 
     } catch (err) {
-      console.error(err)  
+      console.error(err)
+      res.status(500).json("Internal Server Error");  
     }
 };
 

@@ -18,6 +18,7 @@ const getTodoList = async (res, Item, defaultItems, List) => {
         }
     } catch (err) {
         console.log(`Error: ${err}`)
+        res.status(500).json("Internal Server Error");
     }
 };
 

@@ -23,6 +23,7 @@ const deleteItem = async (req, res, Item, List) => {
         }
     } catch (err) {
         console.error(err)
+        res.status(500).json("Internal Server Error");
     }
 }    
 

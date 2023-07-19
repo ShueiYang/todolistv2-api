@@ -25,8 +25,11 @@ const addItem =  async (req, res, Item, List) => {
                 }    
             }
         } catch (err) {
-            console.error(`ERROR NO NAME: ${err}`)
-            res.status(400).json("Please provide a name to add on the list"); 
+            if(err.name === "ValidationError") {
+              return res.status(400).json("Please provide a name to add on the list");   
+            }
+            console.error(err)
+            res.status(500).json("Internal Server Error");
         }
 }  
 
